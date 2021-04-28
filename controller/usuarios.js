@@ -113,6 +113,54 @@ const borrarUser = async (req, res)=>{
         }
     }
 
+    const modificarUsuariorole = async(req,res) =>{
+        try{
+            const {email} =req.body
+            
+            const usuario = await Usuario.findById(req.params.id);
+    
+            if(usuario.email != req.body.email){
+               
+          
+                const hayEmail = await Usuario.findOne({email});
+    
+                if( hayEmail ){
+                        return res.status(400).json({
+                            ok:false,
+                            msg:"El correo ya existe"
+                        });
+            }
+        }
+            usuario.email = req.body.email
+            usuario.nombre = req.body.nombre
+            usuario.role = req.body.role
+            usuario.clases= req.body.clases
+          
+    
+            const usuario1 = await usuario.save();
+    
+            res.json({
+                ok:true,
+                usuario
+            })
+            //res.json(usuario1);
+        }catch (err){
+            res.send("Error " + err);
+        }
+    }
+    const getUsuariosPopulateId = async (req,res)=>{
+        try{
+            const usuario = await Usuario.findById(req.params.id)
+            .select("nombre email role img")
+            .populate("clases","nombre descripcion diaS hora" )
+            .exec()
+            .then()
+            res.json(usuario);
+        }catch(err){
+            res.send("Error" + err)
+        }
+    }
+
 
 module.exports = {
     getUsuarios,
@@ -121,4 +169,6 @@ module.exports = {
     borrarUser,
     buscarUser,
     buscarProfesor,
+    modificarUsuariorole,
+    getUsuariosPopulateId
 }

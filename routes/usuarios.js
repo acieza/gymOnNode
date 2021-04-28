@@ -3,7 +3,8 @@ const router = express.Router();
 const {check} = require('express-validator');
 const { validarCampo } = require('../middleware/validarCampo');
 const multer = require('multer');
-const {getUsuarios, crearUsuario, modificarUsuario, borrarUser, buscarUser, buscarProfesor} = require('../controller/usuarios');
+const {getUsuarios, crearUsuario, modificarUsuario, borrarUser, buscarUser, buscarProfesor,
+    modificarUsuariorole, getUsuariosPopulateId} = require('../controller/usuarios');
 const { validarJWT } = require('../middleware/validarJWT');
 
 
@@ -17,6 +18,15 @@ router.post('/',[
     validarCampo,
 ],crearUsuario);
 
+router.patch('/:id',[
+    validarJWT, 
+    check('nombre',' El campo nombre es requerido').not().isEmpty(),
+    check('email',' El campo email es requerido').not().isEmpty(),
+   
+    validarCampo,
+   
+], modificarUsuario );
+
 router.put('/:id',[
     validarJWT, 
     check('nombre',' El campo nombre es requerido').not().isEmpty(),
@@ -25,8 +35,19 @@ router.put('/:id',[
     validarCampo,
    
 ], modificarUsuario );
+
+router.put('/user/:id',[
+    validarJWT, 
+    check('nombre',' El campo nombre es requerido').not().isEmpty(),
+    check('email',' El campo email es requerido').not().isEmpty(),
+    check('role',' El campo role es requerido').not().isEmpty(),
+    validarCampo,
+   
+], modificarUsuariorole );
 router.delete('/:id', validarJWT, borrarUser);
 router.get('/user', buscarUser);
 router.get('/profesor', buscarProfesor);
+
+router.get('/total/:id', getUsuariosPopulateId);
 
 module.exports = router

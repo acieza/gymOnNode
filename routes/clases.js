@@ -15,6 +15,7 @@ router.get('/',[],getClases);
 //router.get('/total/:id', getCursosPopulateId);
 
 //router.get('/:id', validarJWT, leerUser)
+
 router.delete('/:id', validarJWT, borrarClase);
 
 router.put('/:id',[
