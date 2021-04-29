@@ -36,6 +36,9 @@ app.use('/login', loginRouter);
 const SubirRouter = require('./routes/subir');
 app.use('/subir', SubirRouter);
 
+const comentariosRouter = require('./routes/comentarios');
+app.use('/comentarios', comentariosRouter);
+
 app.listen(3000, ()=>{
     console.log('SERVER ON...');
 })

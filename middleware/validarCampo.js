@@ -18,7 +18,6 @@ const validarCampo = (req,res,next) => {
             msg: errores.array()
     });
 }
-
     next();
 }
 
