@@ -39,6 +39,9 @@ app.use('/subir', SubirRouter);
 const comentariosRouter = require('./routes/comentarios');
 app.use('/comentarios', comentariosRouter);
 
+const galeriasRouter = require('./routes/galerias');
+app.use('/galerias', galeriasRouter);
+
 app.listen(3000, ()=>{
     console.log('SERVER ON...');
 })

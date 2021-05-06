@@ -14,6 +14,12 @@ const usuarioSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    altura:{
+        type:Number
+    },
+    peso:{
+        type:Number
+    },
     img:{
         type:String
     },

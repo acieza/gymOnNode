@@ -73,6 +73,8 @@ const modificarUsuario = async(req,res) =>{
     }
         usuario.email = req.body.email       
         usuario.nombre = req.body.nombre
+        usuario.altura = req.body.altura
+        usuario.peso = req.body.peso
         //usuario.role = req.body.role
       
 
