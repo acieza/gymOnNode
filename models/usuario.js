@@ -14,12 +14,6 @@ const usuarioSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    altura:{
-        type:Number
-    },
-    peso:{
-        type:Number
-    },
     img:{
         type:String
     },
@@ -27,6 +21,12 @@ const usuarioSchema = new mongoose.Schema({
         type:String,
         enum: ['admin','profesor','user'],
         default:"user"
+    },
+    altura:{
+        type: Number,
+    },
+    peso:{
+        type: Number
     },
     clases: [{
         type: mongoose.Schema.Types.ObjectId,

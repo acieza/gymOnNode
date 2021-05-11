@@ -22,7 +22,11 @@ const claseSchema = new mongoose.Schema({
     hora:{
         type:String,
         required:true
-    }
+    },
+    ejercicios: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Ejercicio"
+    }],
 
 })
 

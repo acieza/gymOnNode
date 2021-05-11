@@ -32,7 +32,7 @@ const login = async (req,res) => {
 
                                                 //Generar TOKEN//
 
-         const token = await generarJWT(usuarioLogin._id, usuarioLogin.role, usuarioLogin.nombre, usuarioLogin.img, usuarioLogin.cursos);
+         const token = await generarJWT(usuarioLogin._id, usuarioLogin.role, usuarioLogin.nombre, usuarioLogin.img, usuarioLogin.clases, usuarioLogin.altura, usuarioLogin.peso);
 
          console.log(usuarioLogin)
          res.json({
@@ -66,7 +66,7 @@ const login = async (req,res) => {
 
      //GENERA TOKEN//
 
-     const token = await generarJWT(usuario.id, usuario.role, usuario.nombre, usuario.img, usuario.cursos);
+     const token = await generarJWT(usuario.id, usuario.role, usuario.nombre, usuario.img, usuario.clases, usuario.altura, usuario.peso);
     //const usuarioLogin = await Usuario.findOne({email});
     res.json({
         ok:true,

@@ -154,7 +154,20 @@ const borrarUser = async (req, res)=>{
         try{
             const usuario = await Usuario.findById(req.params.id)
             .select("nombre email role img")
-            .populate("clases","nombre descripcion diaS hora" )
+            .populate("clases","nombre descripcion diaS hora imagen" )
+            .exec()
+            .then()
+            res.json(usuario);
+        }catch(err){
+            res.send("Error" + err)
+        }
+    }
+
+    const getUsuariosPopulate = async (req,res)=>{
+        try{
+            const usuario = await Usuario.find()
+            .select("_id nombre email role img")
+            .populate("clases","nombre descripcion diaS hora imagen" )
             .exec()
             .then()
             res.json(usuario);
@@ -172,5 +185,6 @@ module.exports = {
     buscarUser,
     buscarProfesor,
     modificarUsuariorole,
-    getUsuariosPopulateId
+    getUsuariosPopulateId,
+    getUsuariosPopulate
 }

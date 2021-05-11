@@ -42,6 +42,9 @@ app.use('/comentarios', comentariosRouter);
 const galeriasRouter = require('./routes/galerias');
 app.use('/galerias', galeriasRouter);
 
+const ejerciciosRouter = require('./routes/ejercicios');
+app.use('/ejercicios', ejerciciosRouter);
+
 app.listen(3000, ()=>{
     console.log('SERVER ON...');
 })

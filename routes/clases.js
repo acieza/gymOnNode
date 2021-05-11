@@ -4,7 +4,7 @@ const router = express.Router();
 const Clase = require('../models/clase');
 //const {getUsuarios, crearUsuarios} = require('../controller/usuarios');
 const { check } = require('express-validator');
-const { getClases, crearClases, getCursosPopulate, borrarClase, modificarclase, leerUser, getCursosPopulateId } = require('../controller/clases');
+const { getClases, crearClases, borrarClase, modificarclase, getClasesPopulate, getClasesPopulateId} = require('../controller/clases');
 const { validarCampo } = require('../middleware/validarCampo');
 const { validarJWT } = require('../middleware/validarJWT');
 
@@ -37,5 +37,9 @@ router.post('/',[
     check('hora',' El campo hora es requerido').not().isEmpty(),
     validarCampo,
 ],crearClases);
+
+router.get('/total', getClasesPopulate);
+
+router.get('/total/:id', getClasesPopulateId);
 
 module.exports = router

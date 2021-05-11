@@ -56,32 +56,32 @@ const crearClases = async(req,res)=>{
 
 }
 
-// const getCursosPopulate = async (req,res)=>{
-//     try{
-//         const curso = await Curso.find()
-//         .select("_id titulo descripcion")
-//         .populate("clases","nombre temas.nombreTema temas.link temas.detalle" )
-//         .exec()
-//         .then()
-//         res.json(curso);
-//     }catch(err){
-//         res.send("Error" + err)
-//     }
-// }
+const getClasesPopulate = async (req,res)=>{
+    try{
+        const clase = await Clase.find()
+        .select("_id titulo descripcion")
+        .populate("ejercicios","nombre link detalle" )
+        .exec()
+        .then()
+        res.json(clase);
+    }catch(err){
+        res.send("Error" + err)
+    }
+}
 
-// const getCursosPopulateId = async (req, res) => {
+const getClasesPopulateId = async (req, res) => {
     
-//     try{
-//          const curso = await Curso.findById(req.params.id)
-//         .select("_id titulo descripcion")
-//         .populate("clases", "nombre temas.nombreTema temas.link temas.detalle")
-//         .exec()
-//         .then()
-//     res.json(curso);
-//     }catch(err){
-//         res.send("Error" + err)
-//     }
-// }
+    try{
+         const clase = await Clase.findById(req.params.id)
+        .select("_id titulo descripcion")
+        .populate("ejercicios", "nombre link detalle")
+        .exec()
+        .then()
+    res.json(clase);
+    }catch(err){
+        res.send("Error" + err)
+    }
+}
 
 const borrarClase = async (req, res)=>{
     try{
@@ -138,9 +138,9 @@ const borrarClase = async (req, res)=>{
 module.exports = {
     getClases,
     crearClases,
-    // getCursosPopulate,
+    getClasesPopulate,
     borrarClase,
     modificarclase,
     // leerUser,
-    // getCursosPopulateId
+    getClasesPopulateId
 }
