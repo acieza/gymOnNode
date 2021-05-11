@@ -12,9 +12,6 @@ const claseSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    link:{
-        type:String
-    },
     diaS:{
         type:String,
         required:true

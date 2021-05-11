@@ -59,7 +59,7 @@ const crearClases = async(req,res)=>{
 const getClasesPopulate = async (req,res)=>{
     try{
         const clase = await Clase.find()
-        .select("_id titulo descripcion")
+        .select("_id nombre descripcion")
         .populate("ejercicios","nombre link detalle" )
         .exec()
         .then()
@@ -73,7 +73,7 @@ const getClasesPopulateId = async (req, res) => {
     
     try{
          const clase = await Clase.findById(req.params.id)
-        .select("_id titulo descripcion")
+        .select("_id nombre descripcion")
         .populate("ejercicios", "nombre link detalle")
         .exec()
         .then()
