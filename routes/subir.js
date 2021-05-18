@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const upload = multer({dest:'public/img'});
-// const uploadCurso = multer({dest:'public/imgCurso'});
+const uploadCurso = multer({dest:'public/imgClase'});
 const uploadGaleria = multer({dest:'public/imgGaleria'});
 
 const fs = require('fs');
@@ -28,25 +28,25 @@ router.post('/', upload.single('imagen'), async (req,res)=>{
     }
 })
 
-// router.post('/imgCurso', uploadCurso.single('imagen'), async (req,res)=>{
-//     console.log(req.file);
+router.post('/imgClase', uploadCurso.single('imagen'), async (req,res)=>{
+    console.log(req.file);
 
-//     try{
-//     fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
+    try{
+    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
     
    
-//     res.json({
-//         ok:true,
-//         msg:"Imagen subida con éxito",
-//         nombreImg: req.file.filename + '.' + req.file.mimetype.split('/')[1]
-// })
-//     }catch(err){
-//         res.status(500).json({
-//             ok:false,
-//             msg:("Error de Servidor")
-//         })
-//     }
-// })
+    res.json({
+        ok:true,
+        msg:"Imagen subida con éxito",
+        nombreImg: req.file.filename + '.' + req.file.mimetype.split('/')[1]
+})
+    }catch(err){
+        res.status(500).json({
+            ok:false,
+            msg:("Error de Servidor")
+        })
+    }
+})
 
 router.post('/imgGaleria', uploadGaleria.single('imagen'), async (req,res)=>{
     console.log(req.file);

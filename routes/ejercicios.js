@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Ejercicio = require('../models/ejercicio');
 const { check } = require('express-validator');
-const { getEjercicios, crearEjercicio } = require('../controller/ejercicios');
+const { getEjercicios, crearEjercicio, createEjercicio } = require('../controller/ejercicios');
 const { validarCampo } = require('../middleware/validarCampo');
 const { validarJWT } = require('../middleware/validarJWT');
 
@@ -17,5 +17,12 @@ router.post('/',[
     // check('link','El campo link es requerido').not().isEmpty(),
     validarCampo,
 ],crearEjercicio);
+router.post('/:id',[
+// validarJWT,
+check('nombre','El campo nombre es requerido').not().isEmpty(),
+// check('nombreTema','El campo nombreTema es requerido').not().isEmpty(),
+// check('link','El campo link es requerido').not().isEmpty(),
+validarCampo,
 
+], createEjercicio)
 module.exports = router

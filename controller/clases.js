@@ -11,6 +11,14 @@ const getClases = async (req,res)=>{
         res.send("Error" + err)
     }
 }
+const leerClase = async(req,res)=>{
+    try{
+        const clase = await Clase.findById(req.params.id);
+        res.json(clase);
+    }catch(err){
+        res.send("Error" + err)
+    }
+}
 // const leerUser = async(req,res)=>{
 //     try{
 //         const usuario = await Usuarios.findById(req.params.id);
@@ -111,11 +119,11 @@ const borrarClase = async (req, res)=>{
                         });
             }
         }
-            curso.nombre = req.body.nombre
-            curso.imagen = req.body.imagen
-            curso.descripcion = req.body.descripcion
-            curso.diaS = req.body.diaS
-            curso.hora = req.body.hora
+            clase.nombre = req.body.nombre
+            clase.imagen = req.body.imagen
+            clase.descripcion = req.body.descripcion
+            clase.diaS = req.body.diaS
+            clase.hora = req.body.hora
            
     
             const clase1 = await clase.save();
@@ -124,7 +132,6 @@ const borrarClase = async (req, res)=>{
                 ok:true,
                 clase
             })
-            //res.json(usuario1);
         }catch (err){
             res.send("Error " + err);
         }
@@ -141,6 +148,6 @@ module.exports = {
     getClasesPopulate,
     borrarClase,
     modificarclase,
-    // leerUser,
+    leerClase,
     getClasesPopulateId
 }
