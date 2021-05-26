@@ -153,11 +153,11 @@ const borrarUser = async (req, res)=>{
     const getUsuariosPopulateId = async (req,res)=>{
         try{
             const usuario = await Usuario.findById(req.params.id)
-            .select("nombre email role img")
-            .populate("clases","nombre descripcion diaS hora imagen" )
+            // .select("nombre email role img")
+            .populate("clases","nombre descripcion diaS hora imagen" )            
             .exec()
             .then()
-            res.json(usuario);
+            res.json(usuario.clases);
         }catch(err){
             res.send("Error" + err)
         }

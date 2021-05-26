@@ -81,11 +81,11 @@ const getClasesPopulateId = async (req, res) => {
     
     try{
          const clase = await Clase.findById(req.params.id)
-        .select("_id nombre descripcion")
+        // .select("_id nombre descripcion")
         .populate("ejercicios", "nombre link detalle")
         .exec()
         .then()
-    res.json(clase);
+    res.json(clase.ejercicios);
     }catch(err){
         res.send("Error" + err)
     }
