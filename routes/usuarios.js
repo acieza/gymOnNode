@@ -4,7 +4,7 @@ const {check} = require('express-validator');
 const { validarCampo } = require('../middleware/validarCampo');
 const multer = require('multer');
 const {getUsuarios, crearUsuario, modificarUsuario, borrarUser, buscarUser, buscarProfesor,
-modificarUsuariorole, getUsuariosPopulateId, getUsuariosPopulate} = require('../controller/usuarios');
+modificarUsuariorole, getUsuariosPopulateId, getUsuariosPopulate,getUsuariosPopulateMovilId} = require('../controller/usuarios');
 const { validarJWT } = require('../middleware/validarJWT');
 
 
@@ -50,5 +50,7 @@ router.get('/profesor', buscarProfesor);
 router.get('/total', getUsuariosPopulate);
 
 router.get('/total/:id', getUsuariosPopulateId);
+
+router.get('/total/movil/:id', getUsuariosPopulateMovilId);
 
 module.exports = router

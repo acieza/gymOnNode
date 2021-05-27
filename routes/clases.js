@@ -4,7 +4,8 @@ const router = express.Router();
 const Clase = require('../models/clase');
 //const {getUsuarios, crearUsuarios} = require('../controller/usuarios');
 const { check } = require('express-validator');
-const { getClases, crearClases, borrarClase, modificarclase, getClasesPopulate, getClasesPopulateId, leerClase} = require('../controller/clases');
+const { getClases, crearClases, borrarClase, modificarclase,
+     getClasesPopulate, getClasesPopulateId, leerClase,getClasesPopulateMovilId} = require('../controller/clases');
 const { validarCampo } = require('../middleware/validarCampo');
 const { validarJWT } = require('../middleware/validarJWT');
 
@@ -43,5 +44,7 @@ router.post('/',[
 router.get('/total', getClasesPopulate);
 
 router.get('/total/:id', getClasesPopulateId);
+
+router.get('/total/movil/:id', getClasesPopulateMovilId);
 
 module.exports = router

@@ -81,6 +81,20 @@ const getClasesPopulateId = async (req, res) => {
     
     try{
          const clase = await Clase.findById(req.params.id)
+        .select("_id nombre descripcion")
+        .populate("ejercicios", "nombre link detalle")
+        .exec()
+        .then()
+    res.json(clase);
+    }catch(err){
+        res.send("Error" + err)
+    }
+}
+
+const getClasesPopulateMovilId = async (req, res) => {
+    
+    try{
+         const clase = await Clase.findById(req.params.id)
         // .select("_id nombre descripcion")
         .populate("ejercicios", "nombre link detalle")
         .exec()
@@ -149,5 +163,6 @@ module.exports = {
     borrarClase,
     modificarclase,
     leerClase,
-    getClasesPopulateId
+    getClasesPopulateId,
+    getClasesPopulateMovilId
 }
