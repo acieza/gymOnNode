@@ -1,6 +1,7 @@
 const express = require('express');
 const Clase = require('../models/clase');
 const {validationResult} = require('express-validator');
+const usuario = require('../models/usuario');
 
 
 const getClases = async (req,res)=>{
@@ -153,6 +154,8 @@ const borrarClase = async (req, res)=>{
 
     
 
+    
+
 
 
 
@@ -164,5 +167,5 @@ module.exports = {
     modificarclase,
     leerClase,
     getClasesPopulateId,
-    getClasesPopulateMovilId
+    getClasesPopulateMovilId,
 }

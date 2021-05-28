@@ -189,6 +189,33 @@ const borrarUser = async (req, res)=>{
         }
     }
 
+const addClase = async (req, res) => {
+
+    try {
+        console.log(req.params.idU);
+        console.log(req.params.idC);
+        const usuario = await Usuario.findById(req.params.idU);
+
+        if (req.params.id == usuario.clases.idC) {
+            res.send("Error, " + "la clase ya existe");
+        } else {
+            usuario.clases.push(req.params.idC);
+            await usuario.save();
+        }
+
+
+
+        res.json({
+            ok: true,
+            usuario
+        })
+    } catch (err) {
+        console.log("miau", err);
+
+    }
+
+}
+
 
 module.exports = {
     getUsuarios,
@@ -200,5 +227,6 @@ module.exports = {
     modificarUsuariorole,
     getUsuariosPopulateId,
     getUsuariosPopulate,
-    getUsuariosPopulateMovilId
+    getUsuariosPopulateMovilId,
+    addClase
 }
