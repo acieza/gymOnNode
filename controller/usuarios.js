@@ -1,3 +1,4 @@
+const Clase = require('../models/clase');
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
@@ -190,21 +191,20 @@ const borrarUser = async (req, res)=>{
     }
 
 const addClase = async (req, res) => {
-
     try {
-        console.log(req.params.idU);
-        console.log(req.params.idC);
         const usuario = await Usuario.findById(req.params.idU);
+        const cla = await Clase.findById(req.params.idC);
 
-        if (req.params.id == usuario.clases.idC) {
+        var i = usuario.clases.indexOf(cla._id);
+
+        console.log(i);
+       
+        if (i != -1) {
             res.send("Error, " + "la clase ya existe");
         } else {
             usuario.clases.push(req.params.idC);
             await usuario.save();
         }
-
-
-
         res.json({
             ok: true,
             usuario
