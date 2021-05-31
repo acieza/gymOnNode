@@ -200,17 +200,20 @@ const addClase = async (req, res) => {
         console.log(i);
        
         if (i != -1) {
-            res.send("Error, " + "la clase ya existe");
-        } else {
-            usuario.clases.push(req.params.idC);
-            await usuario.save();
-        }
+            return res.status(400).json({
+                ok:false,
+                msg:"Ya estás apuntado a " + cla.nombre
+            });
+        } 
+        usuario.clases.push(req.params.idC);
+        await usuario.save();
+        
         res.json({
             ok: true,
             usuario
         })
     } catch (err) {
-        console.log("miau", err);
+        res.send("Error", err);
 
     }
 
